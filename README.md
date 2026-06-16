@@ -54,8 +54,27 @@ El frontend queda listo para publicarse en GitHub Pages con el workflow incluido
 - Eso permite que GitHub Pages funcione sin backend.
 - Si mas adelante publicas el backend en otro hosting, solo necesitas definir `VITE_API_URL`.
 
+### Si GitHub Actions falla con `Get Pages site failed`
+
+Ese error aparece cuando el repositorio todavia no tiene GitHub Pages habilitado.
+
+Tienes dos opciones:
+
+1. Habilitarlo manualmente en GitHub:
+   - `Settings > Pages`
+   - En `Build and deployment`, seleccionar `GitHub Actions`
+
+2. Habilitarlo desde el workflow:
+   - Crear un secret llamado `PAGES_PAT`
+   - Ese token debe ser un Personal Access Token con permisos de repo y Pages
+
+El workflow ya quedo preparado para:
+- usar `GITHUB_TOKEN` cuando Pages ya esta habilitado
+- usar `PAGES_PAT` y auto-habilitar Pages cuando todavia no existe
+
 ## Cache de sesion
 
 - Los nombres y el ultimo armado se guardan en `sessionStorage`.
 - Al refrescar la pagina se limpian automaticamente, como pediste.
+
 
